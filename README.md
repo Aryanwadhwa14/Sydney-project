@@ -22,32 +22,5 @@ A dynamic web application that automatically lists upcoming events happening in 
 - **Data Handling**: JSON
 - **Version Control**: Git & GitHub
 
----
-
-## Project Structure
--Sydney-project/
--├── backend/
--│   ├── scraper.py       # Python scraper script
--│   └── events.json      # Stores latest scraped events
--│
--├── frontend/
--│   ├── index.html       # Main HTML structure
--│   ├── style.css        # Tailwind CSS styles
--│   ├── script.ts        # TypeScript logic
--│   └── script.js        # Generated JS from TS
--│
--├── package.json         # Node.js project configuration
--├── tsconfig.json        # TypeScript configuration
--└── vite.config.ts       # Vite build configuration
 
 
-
----
-
-## Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Aryanwadhwa14/Sydney-project.git
-cd Sydney-project
