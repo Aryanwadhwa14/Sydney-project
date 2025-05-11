@@ -1,4 +1,4 @@
-# Sydney Events Aggregator
+# Sydney Events Scraper Project
 
 A dynamic web application that automatically lists upcoming events happening in **Sydney, Australia**. The project uses a Python-based scraper to gather data from public event websites and displays it via a responsive frontend built with TypeScript. Users can view event details, and when they click "Get Tickets," they are prompted for their email before being redirected to the official event page.
 
