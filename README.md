@@ -25,21 +25,20 @@ A dynamic web application that automatically lists upcoming events happening in 
 ---
 
 ## Project Structure
-
 Sydney-project/
 ├── backend/
-│ ├── scraper.py # Python scraper script
-│ └── events.json # Stores latest scraped events
+│   ├── scraper.py       # Python scraper script
+│   └── events.json      # Stores latest scraped events
 │
 ├── frontend/
-│ ├── index.html # Main HTML structure
-│ ├── style.css # Tailwind CSS styles
-│ ├── script.ts # TypeScript logic
-│ └── script.js # Generated JS from TS
+│   ├── index.html       # Main HTML structure
+│   ├── style.css        # Tailwind CSS styles
+│   ├── script.ts        # TypeScript logic
+│   └── script.js        # Generated JS from TS
 │
-├── package.json # Node.js project config
-├── tsconfig.json # TypeScript config
-└── vite.config.ts # Vite build config
+├── package.json         # Node.js project configuration
+├── tsconfig.json        # TypeScript configuration
+└── vite.config.ts       # Vite build configuration
 
 
 
