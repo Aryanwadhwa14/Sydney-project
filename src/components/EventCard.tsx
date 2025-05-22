@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Clock, Tag } from 'lucide-react';
+import { Calendar, MapPin, Clock,} from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { EventType } from '../types/event';
 import EmailCapture from './EmailCapture';

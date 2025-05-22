@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               &copy; {new Date().getFullYear()} Sydney Events. All rights reserved. Events are scraped from Eventbrite.
             </p>
             <p className="text-gray-400 text-sm">
-              Developed with ❤️ by{' '}
+              Developed by{' '}
               <a 
                 href="https://github.com/Aryanwadhwa14" 
                 target="_blank" 

@@ -3,6 +3,7 @@ import { EventType, EventFilters } from '../types/event';
 import { fetchEvents } from '../services/api';
 
 export const useEvents = () => {
+  // state management for events and loading state
   const [events, setEvents] = useState<EventType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<EventFilters>({

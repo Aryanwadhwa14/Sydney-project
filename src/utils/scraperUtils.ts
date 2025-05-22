@@ -1,40 +1,27 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
-import { EventType } from '../types/event';
+import cheerio from 'cheerio';
 
-// Note: This file contains utility functions that would normally be used in a backend service
-// to scrape Eventbrite. In this frontend-only demo, these functions are included for reference
-// but aren't actually called - we use mock data instead.
+export const scrapeSydneyEvents = async (): Promise<any[]> => {
+  const url = 'https://www.eventbrite.com.au/d/australia--sydney/events/';
 
-/**
- * Scrapes events from the Eventbrite Sydney events page
- * This would normally run on a server to avoid CORS issues
- */
-export const scrapeEventbriteEvents = async (): Promise<EventType[]> => {
   try {
-    const url = 'https://www.eventbrite.com.au/d/australia--sydney/events/';
-    const response = await axios.get(url);
-    const $ = cheerio.load(response.data);
-    const events: EventType[] = [];
+    const { data: html } = await axios.get(url);
+    const $ = cheerio.load(html);
 
-    // Example selector - would need to be updated based on Eventbrite's actual DOM structure
-    $('.event-card').each((i, element) => {
-      const id = $(element).attr('data-id') || `event-${i}`;
-      const title = $(element).find('.event-title').text().trim();
-      const dateString = $(element).find('.event-date').text().trim();
-      const timeString = $(element).find('.event-time').text().trim();
-      const location = $(element).find('.event-location').text().trim();
-      const description = $(element).find('.event-description').text().trim();
-      const imageUrl = $(element).find('.event-image').attr('src') || '';
-      const price = $(element).find('.event-price').text().trim() || 'Free';
-      const category = $(element).find('.event-category').text().trim() || 'General';
-      const url = $(element).find('a.event-link').attr('href') || '';
+    const events: any[] = [];
 
-      // Convert date string to ISO format (simplified example)
-      const date = new Date(dateString).toISOString().split('T')[0];
+    $('.search-event-card-wrapper').each((_, element) => {
+      const title = $(element).find('.eds-event-card-content__title').text().trim();
+      const date = $(element).find('.eds-event-card-content__sub-title').text().trim();
+      const timeString = $(element).find('.eds-event-card-content__sub').text().trim();
+      const location = $(element).find('.card-text--truncated__one').text().trim();
+      const description = $(element).find('.eds-event-card-content__content').text().trim();
+      const imageUrl = $(element).find('.eds-event-card-content__image').attr('src') || '';
+      const price = $(element).find('.eds-event-card-content__sub').text().trim();
+      const category = 'Event'; // Eventbrite doesn't provide categories directly on the card
+      const eventUrl = $(element).find('a').attr('href') || '';
 
       events.push({
-        id,
         title,
         date,
         time: timeString,
@@ -43,7 +30,7 @@ export const scrapeEventbriteEvents = async (): Promise<EventType[]> => {
         imageUrl,
         price,
         category,
-        url,
+        url: eventUrl.startsWith('http') ? eventUrl : `https://www.eventbrite.com.au${eventUrl}`,
       });
     });
 
@@ -54,12 +41,11 @@ export const scrapeEventbriteEvents = async (): Promise<EventType[]> => {
   }
 };
 
-/**
- * In a real application, this function would run on a schedule (e.g., daily)
- * to update the events database with fresh data from Eventbrite
- */
 export const scheduleEventScraping = () => {
-  // This would be implemented in a server environment
-  // using a task scheduler like node-cron
   console.log('Event scraping scheduled');
 };
+
+
+
+
+
